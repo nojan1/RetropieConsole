@@ -1,4 +1,5 @@
 #include <powerButtonBehaviour.h>
+#include <states.h>
 
 void PowerButtonBehaviour::blinkPowerLed(){
     if(timeToRun(200)){
@@ -8,7 +9,7 @@ void PowerButtonBehaviour::blinkPowerLed(){
 
 PowerButtonBehaviour::PowerButtonBehaviour()
 {
-    pinMode(POWERBTN_PIN, INPUT_PULLUP);
+    pinMode(POWERBTN_PIN, INPUT);
     pinMode(POWERLED_PIN, OUTPUT);
 
     digitalWrite(POWERLED_PIN, HIGH);
@@ -24,9 +25,11 @@ void PowerButtonBehaviour::inShuttingDown()
     blinkPowerLed();
 }
 
-void PowerButtonBehaviour::inError(int errorCode)
+void PowerButtonBehaviour::inIdle()
 {
-
+    if(digitalRead(POWERBTN_PIN) == HIGH){
+        setState(STARTING);
+    }
 }
 
 void PowerButtonBehaviour::onTransition(int from, int to)

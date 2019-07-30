@@ -47,4 +47,6 @@ void DisplayBehaviour::inError(int errorCode)
 void DisplayBehaviour::onTransition(int from, int to)
 {
     hasDrawn = false;
+    display->clearDisplay();
+    display->display();
 }

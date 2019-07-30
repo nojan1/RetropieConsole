@@ -8,7 +8,7 @@
 #define NUM_BEHAVIOURS 3
 Behaviour *behaviours[NUM_BEHAVIOURS];
 
-int currentState = STARTING;
+int currentState = IDLE;
 int errorCode = -1;
 
 void setup()
@@ -18,6 +18,14 @@ void setup()
   behaviours[0] = new LedRingBehaviour();
   behaviours[1] = new DisplayBehaviour();
   behaviours[2] = new PowerButtonBehaviour();
+}
+
+void setState(int state, int errorCode){
+  for(int i = 0; i < NUM_BEHAVIOURS; i++)
+    behaviours[i]->onTransition(currentState, state);
+
+  currentState = state;
+  errorCode = errorCode;
 }
 
 void loop()
