@@ -5,7 +5,7 @@
 #include <displayBehaviour.h>
 #include <powerButtonBehaviour.h>
 
-#define NUM_BEHAVIOURS 2
+#define NUM_BEHAVIOURS 3
 Behaviour *behaviours[NUM_BEHAVIOURS];
 
 int currentState = STARTING;
@@ -17,6 +17,7 @@ void setup()
 
   behaviours[0] = new LedRingBehaviour();
   behaviours[1] = new DisplayBehaviour();
+  behaviours[2] = new PowerButtonBehaviour();
 }
 
 void loop()
