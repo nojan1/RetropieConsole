@@ -4,8 +4,9 @@
 #include <ledRingBehaviour.h>
 #include <displayBehaviour.h>
 #include <powerButtonBehaviour.h>
+#include <powerStateBehaviour.h>
 
-#define NUM_BEHAVIOURS 3
+#define NUM_BEHAVIOURS 4
 Behaviour *behaviours[NUM_BEHAVIOURS];
 
 int currentState = IDLE;
@@ -18,10 +19,12 @@ void setup()
   behaviours[0] = new LedRingBehaviour();
   behaviours[1] = new DisplayBehaviour();
   behaviours[2] = new PowerButtonBehaviour();
+  behaviours[3] = new PowerStateBehaviour();
 }
 
-void setState(int state, int errorCode){
-  for(int i = 0; i < NUM_BEHAVIOURS; i++)
+void setState(int state, int errorCode)
+{
+  for (int i = 0; i < NUM_BEHAVIOURS; i++)
     behaviours[i]->onTransition(currentState, state);
 
   currentState = state;
@@ -45,6 +48,9 @@ void loop()
       break;
     case ERROR:
       behaviours[i]->inError(errorCode);
+      break;
+    case POWEROFF:
+      behaviours[i]->inPowerOff();
       break;
     default:
       behaviours[i]->inIdle();

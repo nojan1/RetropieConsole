@@ -1,7 +1,7 @@
 #include <behaviour.h>
+#include <pins.h>
 #include <Adafruit_SSD1306.h>
 
-#define OLED_RESET 4
 
 class DisplayBehaviour : public Behaviour
 {

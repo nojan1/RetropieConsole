@@ -1,8 +1,6 @@
 #include <behaviour.h>
+#include <pins.h>
 #include <Arduino.h>
-
-#define POWERBTN_PIN 2
-#define POWERLED_PIN 13
 
 class PowerButtonBehaviour : public Behaviour
 {
@@ -12,6 +10,7 @@ public:
     PowerButtonBehaviour();
     void inStarting();
     void inShuttingDown();
+    void inRunning();
     void inIdle();
     void onTransition(int from, int to);
 };

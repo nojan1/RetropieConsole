@@ -23,6 +23,7 @@ public:
     virtual void inRunning() {};
     virtual void inStarting() {};
     virtual void inShuttingDown() {};
+    virtual void inPowerOff() {};
     virtual void inError(int errorCode) {};
     virtual void onTransition(int from, int to) {};
 };

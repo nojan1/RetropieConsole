@@ -1,4 +1,5 @@
 #include <displayBehaviour.h>
+#include <states.h>
 
 #include <SPI.h>
 #include <Wire.h>
@@ -6,21 +7,19 @@
 
 DisplayBehaviour::DisplayBehaviour()
 {
-    display = new Adafruit_SSD1306(128, 64, &Wire, OLED_RESET);
+    display = new Adafruit_SSD1306(128, 64, &Wire, OLEDRESET_PIN);
 
     if (!display->begin(SSD1306_SWITCHCAPVCC, 0x3D))
     { 
         Serial.println(F("SSD1306 allocation failed"));
-        for (;;)
-            ; // Don't proceed, loop forever
-
-        //TODO: Enter error state            
+        setState(ERROR, ERROR_DISPLAYALLOC);         
     }
 
     display->cp437(true);         // Use full 256 char 'Code Page 437' font
     display->setTextColor(WHITE); // Draw white text
 
     display->clearDisplay();
+    display->display();
 }
 
 void DisplayBehaviour::inStarting()

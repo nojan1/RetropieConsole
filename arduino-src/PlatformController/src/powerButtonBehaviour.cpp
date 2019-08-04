@@ -25,6 +25,17 @@ void PowerButtonBehaviour::inShuttingDown()
     blinkPowerLed();
 }
 
+void PowerButtonBehaviour::inRunning()
+{
+    digitalWrite(POWERLED_PIN, LOW);
+
+    if(digitalRead(POWERBTN_PIN) == HIGH){
+        //TODO: Send command to pi to make it halt
+        setState(SHUTTINGDOWN);
+    }
+}
+
+
 void PowerButtonBehaviour::inIdle()
 {
     if(digitalRead(POWERBTN_PIN) == HIGH){
