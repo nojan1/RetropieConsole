@@ -5,8 +5,9 @@
 #include <displayBehaviour.h>
 #include <powerButtonBehaviour.h>
 #include <powerStateBehaviour.h>
+#include <fanBehaviour.h>
 
-#define NUM_BEHAVIOURS 4
+#define NUM_BEHAVIOURS 5
 Behaviour *behaviours[NUM_BEHAVIOURS];
 
 int currentState = IDLE;
@@ -20,6 +21,7 @@ void setup()
   behaviours[1] = new DisplayBehaviour();
   behaviours[2] = new PowerButtonBehaviour();
   behaviours[3] = new PowerStateBehaviour();
+  behaviours[4] = new FanBehaviour();
 }
 
 void setState(int state, int errorCode)

@@ -6,3 +6,5 @@
 
 #define ARDUINOPOWER_PIN 7
 #define PIPOWER_PIN 8
+
+#define FAN_PIN A1
